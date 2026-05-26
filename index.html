@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 <meta name="theme-color" content="#fff7f0" />
-<title>A Little Something For You 💌</title>
+<title>Happy Birthday, Princess Mae! 🎂</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -124,6 +124,42 @@
     10%  { opacity: 0.4; }
     90%  { opacity: 0.3; }
     100% { transform: translateY(110vh) rotate(540deg) scale(0.6); opacity: 0; }
+  }
+
+  /* ── BALLOONS ── */
+  .balloons-bg {
+    position: fixed; inset: 0;
+    pointer-events: none; overflow: hidden; z-index: 2;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .balloons-bg.visible { opacity: 1; }
+
+  .balloon {
+    position: absolute;
+    bottom: -180px;
+    animation: floatUp ease-in-out infinite;
+  }
+
+  .balloon svg { display: block; }
+
+  @keyframes floatUp {
+    0%   { transform: translateY(0) rotate(-4deg); }
+    25%  { transform: translateY(-18px) rotate(3deg); }
+    50%  { transform: translateY(-36px) rotate(-3deg); }
+    75%  { transform: translateY(-18px) rotate(4deg); }
+    100% { transform: translateY(0) rotate(-4deg); }
+  }
+
+  @keyframes riseIn {
+    0%   { bottom: -180px; opacity: 0; }
+    60%  { opacity: 1; }
+    100% { bottom: 8px; opacity: 1; }
+  }
+
+  .balloon.launched {
+    animation: riseIn 1.6s cubic-bezier(.22,1,.36,1) forwards, floatUp 4s ease-in-out 1.6s infinite;
   }
 
   /* ── LETTER PAGE ── */
@@ -376,10 +412,11 @@
 
 <canvas id="confetti-canvas"></canvas>
 <div class="petals-bg" id="petals"></div>
+<div class="balloons-bg" id="balloons"></div>
 
 <!-- ENVELOPE SCENE -->
 <div id="scene">
-  <p class="scene-hint">✦ &nbsp;You've got mail&nbsp; ✦</p>
+  <p class="scene-hint">🕊️ &nbsp;A blessing just for you&nbsp; 🕊️</p>
 
   <div id="envelope-wrap" onclick="openEnvelope()" role="button" tabindex="0"
        onkeydown="if(event.key==='Enter')openEnvelope()" title="Open your letter">
@@ -390,15 +427,17 @@
       <path d="M8 50 L140 10 L272 50" fill="#fff0f6" stroke="#f9a8c0" stroke-width="1.5"/>
       <circle cx="140" cy="115" r="22" fill="#e07a9a"/>
       <circle cx="140" cy="115" r="17" fill="#f9a8c0"/>
-      <text x="140" y="121" text-anchor="middle" font-size="16" fill="#fff" font-family="serif">♥</text>
-      <text x="48" y="88" font-size="12" fill="#f9a8c0" opacity="0.55">♥</text>
-      <text x="222" y="88" font-size="12" fill="#f9a8c0" opacity="0.55">♥</text>
-      <text x="30" y="168" font-size="9" fill="#f9a8c0" opacity="0.4">✿</text>
-      <text x="248" y="168" font-size="9" fill="#f9a8c0" opacity="0.4">✿</text>
+      <text x="140" y="121" text-anchor="middle" font-size="16" fill="#fff" font-family="serif">🎂</text>
+      <text x="48" y="88" font-size="12" fill="#f4c97a" opacity="0.75">★</text>
+      <text x="222" y="88" font-size="12" fill="#f4c97a" opacity="0.75">★</text>
+      <text x="30" y="168" font-size="11" fill="#f9a8c0" opacity="0.5">🎈</text>
+      <text x="245" y="168" font-size="11" fill="#f9a8c0" opacity="0.5">🎈</text>
+      <text x="70" y="180" font-size="8" fill="#e8dff8" opacity="0.6">✦</text>
+      <text x="200" y="180" font-size="8" fill="#e8dff8" opacity="0.6">✦</text>
     </svg>
   </div>
 
-  <p class="tap-label">tap the envelope to open ↑</p>
+  <p class="tap-label">🎁 tap to unwrap your surprise ↑</p>
 </div>
 
 <!-- LETTER PAGE -->
@@ -411,13 +450,13 @@
 
   <div class="letter-content">
     <div class="letter-card">
-      <span class="corner-deco">✿</span>
-      <span class="corner-deco">✿</span>
-      <span class="corner-deco">✿</span>
-      <span class="corner-deco">✿</span>
+      <span class="corner-deco">🎉</span>
+      <span class="corner-deco">🌟</span>
+      <span class="corner-deco">🎈</span>
+      <span class="corner-deco">✨</span>
 
-      <p class="letter-salutation" id="el-salutation">Dear Princess Mae,</p>
-      <h1 class="letter-title" id="el-title">One mistake does not define you. 🌸</h1>
+      <p class="letter-salutation" id="el-salutation">To my dearest Princess Mae 🕊️</p>
+      <h1 class="letter-title" id="el-title">God made you, and He called it wonderful. 🎂✨</h1>
 
       <div class="divider" id="el-divider">
         <div class="divider-line"></div>
@@ -428,55 +467,50 @@
       <div class="letter-body">
 
         <p class="letter-para" id="p1">
-          I know your heart feels heavy right now — not only because of the result,
-          but because you know deep inside that what happened during that moment was not right.
-          But I want you to remember this: <span class="highlight">one mistake does not define your entire character,
-          your future, or your worth in God's eyes.</span>
+          Today isn't just a birthday — it's a <span class="highlight">holy celebration of the life God breathed into you.</span>
+          Every single year you've lived is a testament to His faithfulness, His love,
+          and His perfect plan for you, Princess Mae. 🎂🙏
         </p>
 
         <p class="letter-para" id="p2">
-          God does not love you only when you succeed or when you are perfect.
-          He loves you even in moments of weakness, failure, and regret.
-          What matters now is your honesty before Him and your willingness to learn and grow from this experience.
-          Conviction is painful, but it is also a sign that
-          <span class="star">your heart still seeks what is right.</span>
+          Psalm 139 says you are <span class="star">fearfully and wonderfully made</span> —
+          and girl, God really outdid Himself with you. 🌸
+          Your kindness, your faith, your heart for the Lord — these are gifts He placed in you
+          long before you took your first breath. Don't ever forget that.
         </p>
 
         <p class="letter-para" id="p3">
-          Please don't drown yourself in shame. Instead, take this as a moment to reflect, pray,
-          and start again with a cleaner heart and stronger faith.
-          We all fall short sometimes, but <span class="highlight">God's grace is always bigger than our mistakes.</span>
-          The important thing is choosing to stand back up and walk the right path again.
+          Another year is God saying: <span class="highlight">"I'm not done with you yet — the best is still ahead."</span> 🕊️
+          His plans for you are good, full of hope, and greater than anything you can imagine.
+          Trust the One who holds your every tomorrow. (Jeremiah 29:11)
         </p>
 
         <div class="affirmation-row" id="el-pills">
-          <span class="affirmation-pill">You are loved 💗</span>
-          <span class="affirmation-pill">Grace is yours ✨</span>
-          <span class="affirmation-pill">You are faithful 🌷</span>
-          <span class="affirmation-pill">Stand back up 🌙</span>
-          <span class="affirmation-pill">God sees you ✦</span>
-          <span class="affirmation-pill">Start again 🌸</span>
+          <span class="affirmation-pill">Daughter of the King 👑</span>
+          <span class="affirmation-pill">Fearfully made 🌸</span>
+          <span class="affirmation-pill">Covered by grace ✝️</span>
+          <span class="affirmation-pill">God's masterpiece 🤍</span>
+          <span class="affirmation-pill">Walking in faith 🕊️</span>
+          <span class="affirmation-pill">Blessed & chosen ✨</span>
         </div>
 
         <p class="letter-para" id="p4">
-          Remember what Romans 8:1 says —
-          <span class="highlight">"There is now no condemnation for those who are in Christ Jesus."</span>
-          This failure is not the end for you. It's a lesson, a redirection,
-          and maybe even a reminder that God wants you to trust your own abilities
-          and lean on Him instead of fear or pressure.
+          May this new year of your life overflow with <span class="highlight">God's peace that surpasses understanding,</span>
+          with answered prayers, open doors, and more of His presence. 🎁
+          May you continue to walk boldly in your faith, shine His light wherever you go,
+          and know deep in your heart that you are loved — by Him, and by everyone around you. 💛
         </p>
 
         <p class="letter-para" id="p5">
-          I know you, Princess. You are <span class="star">kind, faithful, and capable.</span>
-          Don't let this moment make you think otherwise.
-          Forgive yourself, pray about it, and move forward wiser and stronger.
-          I'm always here for you, and I'll keep praying for your peace and healing. 🌼
+          Happy Birthday, Princess Mae. You are a <span class="star">true daughter of the King</span> —
+          and your life is a beautiful testimony of His grace and goodness.
+          Keep shining for Him. The world needs your light. 🌟🙏🎂
         </p>
 
       </div>
 
-      <p class="letter-closing" id="el-closing">With love,</p>
-      <p class="letter-signature" id="el-sig">Sai Mendoza 💌</p>
+      <p class="letter-closing" id="el-closing">With love and prayers on your special day, 🙏🎂</p>
+      <p class="letter-signature" id="el-sig">Sai Mendoza 💌✝️</p>
     </div>
   </div>
 </div>
@@ -484,9 +518,53 @@
 <button class="music-btn" id="musicBtn" onclick="toggleVibe()" aria-label="Toggle music">🎵</button>
 
 <script>
+  /* ── Balloons ── */
+  function makeBalloonSVG(color, shine, size) {
+    var s = size || 54;
+    var h = Math.round(s * 1.25);
+    return '<svg width="' + s + '" height="' + (h + 28) + '" viewBox="0 0 ' + s + ' ' + (h + 28) + '" xmlns="http://www.w3.org/2000/svg">' +
+      '<ellipse cx="' + (s/2) + '" cy="' + (h/2) + '" rx="' + (s/2 - 1) + '" ry="' + (h/2 - 1) + '" fill="' + color + '"/>' +
+      '<ellipse cx="' + (s/2 - s*0.15) + '" cy="' + (h/2 - h*0.18) + '" rx="' + (s*0.1) + '" ry="' + (h*0.07) + '" fill="' + shine + '" opacity="0.55"/>' +
+      '<polygon points="' + (s/2-4) + ',' + (h-1) + ' ' + (s/2+4) + ',' + (h-1) + ' ' + (s/2) + ',' + (h+7) + '" fill="' + color + '"/>' +
+      '<path d="M' + (s/2) + ' ' + (h+7) + ' Q' + (s/2 - 8) + ' ' + (h+17) + ' ' + (s/2) + ' ' + (h+24) + '" stroke="' + color + '" stroke-width="1.4" fill="none" opacity="0.6"/>' +
+      '</svg>';
+  }
+
+  function launchBalloons() {
+    var container = document.getElementById('balloons');
+    container.innerHTML = '';
+    var colors = [
+      ['#f9a8c0','#fff0f6'],
+      ['#c8a0f8','#f0e8ff'],
+      ['#f4c97a','#fff8e0'],
+      ['#a0d4f8','#e0f4ff'],
+      ['#e07a9a','#fde8f0'],
+      ['#b8f4c0','#e8fff0'],
+      ['#f9a8c0','#fff0f6'],
+      ['#f4c97a','#fff8e0'],
+    ];
+    var count = window.innerWidth < 480 ? 5 : 8;
+    for (var i = 0; i < count; i++) {
+      var b = document.createElement('div');
+      b.className = 'balloon';
+      var col = colors[i % colors.length];
+      var size = 44 + Math.random() * 22;
+      b.innerHTML = makeBalloonSVG(col[0], col[1], Math.round(size));
+      var leftPct = 4 + (i / (count - 1)) * 88 + (Math.random() - 0.5) * 6;
+      b.style.left = leftPct + '%';
+      b.style.animationDelay = (i * 0.18) + 's';
+      container.appendChild(b);
+      /* stagger rise */
+      (function(el, delay) {
+        setTimeout(function() { el.classList.add('launched'); }, delay);
+      })(b, 80 + i * 180);
+    }
+    container.classList.add('visible');
+  }
+
   /* ── Petals ── */
   const petalsEl = document.getElementById('petals');
-  const petalColors = ['#f9a8c0','#fde8f0','#e8dff8','#d4ead9','#f4c97a','#fbc4d5'];
+  const petalColors = ['#f9a8c0','#fde8f0','#f4c97a','#c8a0f8','#a0d4f8','#fbc4d5','#b8f4c0'];
   const count = window.innerWidth < 480 ? 13 : 22;
   for (let i = 0; i < count; i++) {
     const p = document.createElement('div');
@@ -511,7 +589,9 @@
       document.getElementById('letter-page').classList.add('visible');
       revealLetter();
       burstConfetti();
+      launchBalloons();
       document.getElementById('musicBtn').classList.add('show');
+      autoPlayMusic();
     }, 900);
   }
 
@@ -532,7 +612,7 @@
     var ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    var cols = ['#f9a8c0','#e07a9a','#e8dff8','#d4ead9','#f4c97a','#ffffff','#fde8f0'];
+    var cols = ['#f9a8c0','#e07a9a','#f4c97a','#c8a0f8','#a0d4f8','#ffffff','#b8f4c0','#ff9f68'];
     var pieces = [];
     for (var i = 0; i < 100; i++) {
       pieces.push({
@@ -617,6 +697,22 @@
   /* ── Music: cheer-up.mp3 ── */
   var audio = null;
   var vibeOn = false;
+
+  function autoPlayMusic() {
+    var btn = document.getElementById('musicBtn');
+    if (!audio) {
+      audio = new Audio('cheer-up.mp3');
+      audio.loop = true;
+      audio.volume = 0.5;
+    }
+    audio.play().then(function() {
+      btn.textContent = '🎶';
+      btn.classList.add('playing');
+      vibeOn = true;
+    }).catch(function() {
+      /* autoplay blocked by browser — user can tap the button manually */
+    });
+  }
 
   function toggleVibe() {
     var btn = document.getElementById('musicBtn');
